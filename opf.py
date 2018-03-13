@@ -13,7 +13,7 @@ class OPFFile(object):
 
 
 skip_dirs = ["Old_Files", "Old_files", "Extra Files",
-             "old_files", "old_opfs", "old_opf"]
+             "old_files", "old_opfs", "old_opf", "error", "errors"]
 rename_suffix = "_sparse_code.opf"
 
 

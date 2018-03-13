@@ -4,6 +4,7 @@ from datetime import date
 
 import shutil
 
+
 class CHAFile(object):
     def __init__(self, path, filename, key):
         self.path = path
@@ -11,11 +12,10 @@ class CHAFile(object):
         self.key = key
 
 
-skip_dirs = ["Old_Files", "Old_files", "Extra Files", "old_files", "old_chas", "old_cha", "Repair Files"]
+skip_dirs = ["Old_Files", "Old_files", "Extra Files", "old_files",
+             "old_chas", "old_cha", "Repair Files", "error", "errors"]
 
 rename_suffix = "_sparse_code.cha"
-
-
 
 
 def delete_old_files(root, files):
@@ -23,7 +23,8 @@ def delete_old_files(root, files):
     print "\nremoving: "
     for x in cha_files:
         src = os.path.join(root, x)
-        dst = os.path.join(root, "old_chas", x.replace(".cha", "_{}.cha".format(date.today().isoformat())))
+        dst = os.path.join(root, "old_chas", x.replace(
+            ".cha", "_{}.cha".format(date.today().isoformat())))
         print "\t{}   --to-->      {}".format(src, dst)
         if not os.path.isdir(os.path.join(root, "old_chas")):
             if os.path.exists(os.path.join(root, "old_chas")):
@@ -33,12 +34,10 @@ def delete_old_files(root, files):
     print "\n"
 
 
-
 if __name__ == "__main__":
 
     start_dir = sys.argv[1]
     subj_files = sys.argv[2]
-
 
     if len(sys.argv) > 4:
         print "\nusage:  $: python cha.py  folder_with_all_cha_files  path_to_subject_files  [--rename]\n\ncan't have more than 3 arguments"
@@ -62,7 +61,7 @@ if __name__ == "__main__":
             for cha_file in cha_files:
                 if cha_file.key == key:
                     if rename:
-                        final_name = cha_file.filename[:5]+rename_suffix
+                        final_name = cha_file.filename[:5] + rename_suffix
                     else:
                         final_name = cha_file.filename
                     cha_filez = [x for x in files if x.endswith(".cha")]

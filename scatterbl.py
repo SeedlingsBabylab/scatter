@@ -13,7 +13,8 @@ class BLFile(object):
         self.bl_type = bl_type
 
 
-skip_dirs = ["Old_Files", "Old_files", "Extra Files", "old_files"]
+skip_dirs = ["Old_Files", "Old_files",
+             "Extra Files", "old_files", "error", "errors"]
 
 
 def delete_old_files(root, files):
