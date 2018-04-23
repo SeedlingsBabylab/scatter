@@ -35,7 +35,8 @@ if __name__ == "__main__":
     subj_files = sys.argv[2]
 
     if len(sys.argv) > 5:
-        print "\nusage:  $: python scatterbl.py  folder_with_all_bl_files  path_to_subject_files  [--audio] [--video] [--rename]\n\ncan't have more than 3 arguments"
+        print "\nusage:  $: python scatterbl.py  folder_with_all_bl_files  [--audio] [--video] [--rename]\n\ncan't have more than 3 arguments"
+        print "audiobl_paths.txt or videobl_paths.txt should exist"
         sys.exit(0)
 
     audio_bl = False
@@ -62,29 +63,38 @@ if __name__ == "__main__":
                 bl_file = BLFile(os.path.join(root, file), file, key, bl_type)
                 bl_files.append(bl_file)
 
-    for root, dirs, files in os.walk(subj_files):
+    if audio_bl:
+        with open('audiobl_paths.txt') as f:
+            paths = f.readlines()
+    if video_bl:
+        with open('videobl_paths.txt') as f:
+            paths = f.readlines()
+
+    for path in paths:
+        path = path.strip()
+        if not path:
+            continue
+        files = os.listdir(path)
         if audio_bl:
-            if "Audio_Analysis" in root and not any(x in root for x in skip_dirs):
-                key = root.split("Subject_Files/")[1].split("/")[1]
-                for bl_file in bl_files:
-                    if bl_file.key == key and bl_file.bl_type == "audio":
-                        if rename:
-                            bl_file.filename = bl_file.filename[:5] + \
-                                "_audio_sparse_code.csv"
-                        final_path = os.path.join(root, bl_file.filename)
-                        print "moving:  {}  to  {}".format(bl_file.path, final_path)
-                        delete_old_files(root, files)
-                        shutil.copy(bl_file.path, final_path)
+            key = path.split("Subject_Files/")[1].split("/")[1]
+            for bl_file in bl_files:
+                if bl_file.key == key and bl_file.bl_type == "audio":
+                    if rename:
+                        bl_file.filename = bl_file.filename[:5] + \
+                            "_audio_sparse_code.csv"
+                    final_path = os.path.join(path, bl_file.filename)
+                    print "moving:  {}  to  {}".format(bl_file.path, final_path)
+                    delete_old_files(path, files)
+                    shutil.copy(bl_file.path, final_path)
 
         if video_bl:
-            if "Video_Analysis" in root and not any(x in root for x in skip_dirs):
-                key = root.split("Subject_Files/")[1].split("/")[1]
-                for bl_file in bl_files:
-                    if bl_file.key == key and bl_file.bl_type == "video":
-                        if rename:
-                            bl_file.filename = bl_file.filename[:5] + \
-                                "_video_sparse_code.csv"
-                        final_path = os.path.join(root, bl_file.filename)
-                        print "moving:  {}  to  {}".format(bl_file.path, final_path)
-                        delete_old_files(root, files)
-                        shutil.copy(bl_file.path, final_path)
+            key = path.split("Subject_Files/")[1].split("/")[1]
+            for bl_file in bl_files:
+                if bl_file.key == key and bl_file.bl_type == "video":
+                    if rename:
+                        bl_file.filename = bl_file.filename[:5] + \
+                            "_video_sparse_code.csv"
+                    final_path = os.path.join(path, bl_file.filename)
+                    print "moving:  {}  to  {}".format(bl_file.path, final_path)
+                    delete_old_files(path, files)
+                    shutil.copy(bl_file.path, final_path)
