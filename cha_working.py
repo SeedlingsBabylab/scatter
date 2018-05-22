@@ -55,14 +55,14 @@ if __name__ == "__main__":
                 cha_file = CHAFile(os.path.join(root, file), file, file[:5])
                 cha_files.append(cha_file)
 
-    with open('cha_paths.txt') as f:
+    with open('cha_paths_working.txt') as f:
         paths = f.readlines()
         for path in paths:
             path = path.strip()
             if not path:
                 continue
             files = os.listdir(path)
-            key = path.split("Subject_Files/")[1].split("/")[1]
+            key = path.split("Working_Files/")[1].split("/")[0]
             for cha_file in cha_files:
                 if cha_file.key == key:
                     if rename:
