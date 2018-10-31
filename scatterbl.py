@@ -33,9 +33,10 @@ if __name__ == "__main__":
 
     start_dir = sys.argv[1]
     subj_files = sys.argv[2]
+    list_paths = sys.argv[3]
 
     if len(sys.argv) > 5:
-        print "\nusage:  $: python scatterbl.py  folder_with_all_bl_files  [--audio] [--video] [--rename]\n\ncan't have more than 3 arguments"
+        print "\nusage:  $: python scatterbl.py  folder_with_all_bl_files  list_paths.txt  [--audio] [--video] [--rename]\n\ncan't have more than 3 arguments"
         print "audiobl_paths.txt or videobl_paths.txt should exist"
         sys.exit(0)
 
@@ -64,10 +65,10 @@ if __name__ == "__main__":
                 bl_files.append(bl_file)
 
     if audio_bl:
-        with open('audiobl_paths.txt') as f:
+        with open(list_paths) as f:
             paths = f.readlines()
     if video_bl:
-        with open('videobl_paths.txt') as f:
+        with open(list_paths) as f:
             paths = f.readlines()
 
     for path in paths:
