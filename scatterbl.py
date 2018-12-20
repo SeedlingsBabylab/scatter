@@ -1,6 +1,6 @@
 import os
 import sys
-
+from sets import Set
 import shutil
 from datetime import date
 
@@ -13,8 +13,8 @@ class BLFile(object):
         self.bl_type = bl_type
 
 
-skip_dirs = ["Old_Files", "Old_files",
-             "Extra Files", "old_files", "error", "errors"]
+skip_dirs = Set(["Old_Files", "Old_files",
+             "Extra Files", "old_files", "error", "errors"])
 
 
 def delete_old_files(root, files):
@@ -54,10 +54,12 @@ if __name__ == "__main__":
 
     for root, dirs, files in os.walk(start_dir):
         for file in files:
-            if file.endswith(".csv"):
+
+            if file.endswith(".csv") and "wordmerged" in file:
                 key = file[:5]
                 if "audio" in file:
                     bl_type = "audio"
+                    print(file)
                 if "video" in file:
                     bl_type = "video"
 
@@ -70,32 +72,35 @@ if __name__ == "__main__":
     if video_bl:
         with open(list_paths) as f:
             paths = f.readlines()
+    with open(list_paths) as f:
+        paths = f.readlines()
+        # print(len(paths))
+        for path in paths:
+            path = path.strip()
+            if not path:
+                continue
+            files = os.listdir(path)
+            if audio_bl:
+                # print("audio")
+                key = path.split("Subject_Files/")[1].split("/")[1]
+                for bl_file in bl_files:
+                    if bl_file.key == key and bl_file.bl_type == "audio":
+                        if rename:
+                            bl_file.filename = bl_file.filename[:5] + \
+                                "_audio_sparse_code.csv"
+                        final_path = os.path.join(path, bl_file.filename)
+                        print "moving:  {}  to  {}".format(bl_file.path, final_path)
+                        delete_old_files(path, files)
+                        shutil.copy(bl_file.path, final_path)
 
-    for path in paths:
-        path = path.strip()
-        if not path:
-            continue
-        files = os.listdir(path)
-        if audio_bl:
-            key = path.split("Subject_Files/")[1].split("/")[1]
-            for bl_file in bl_files:
-                if bl_file.key == key and bl_file.bl_type == "audio":
-                    if rename:
-                        bl_file.filename = bl_file.filename[:5] + \
-                            "_audio_sparse_code.csv"
-                    final_path = os.path.join(path, bl_file.filename)
-                    print "moving:  {}  to  {}".format(bl_file.path, final_path)
-                    delete_old_files(path, files)
-                    shutil.copy(bl_file.path, final_path)
-
-        if video_bl:
-            key = path.split("Subject_Files/")[1].split("/")[1]
-            for bl_file in bl_files:
-                if bl_file.key == key and bl_file.bl_type == "video":
-                    if rename:
-                        bl_file.filename = bl_file.filename[:5] + \
-                            "_video_sparse_code.csv"
-                    final_path = os.path.join(path, bl_file.filename)
-                    print "moving:  {}  to  {}".format(bl_file.path, final_path)
-                    delete_old_files(path, files)
-                    shutil.copy(bl_file.path, final_path)
+            if video_bl:
+                key = path.split("Subject_Files/")[1].split("/")[1]
+                for bl_file in bl_files:
+                    if bl_file.key == key and bl_file.bl_type == "video":
+                        if rename:
+                            bl_file.filename = bl_file.filename[:5] + \
+                                "_video_sparse_code.csv"
+                        final_path = os.path.join(path, bl_file.filename)
+                        print "moving:  {}  to  {}".format(bl_file.path, final_path)
+                        delete_old_files(path, files)
+                        shutil.copy(bl_file.path, final_path)

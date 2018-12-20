@@ -55,7 +55,7 @@ if __name__ == "__main__":
                 cha_file = CHAFile(os.path.join(root, file), file, file[:5])
                 cha_files.append(cha_file)
 
-    with open('cha_paths.txt') as f:
+    with open('path_files/cha_paths.txt') as f:
         paths = f.readlines()
         for path in paths:
             path = path.strip()
