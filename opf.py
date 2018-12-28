@@ -54,7 +54,7 @@ if __name__ == "__main__":
                 opf_file = OPFFile(os.path.join(root, file), file, file[:5])
                 opf_files.append(opf_file)
 
-    with open('opf_paths.txt') as f:
+    with open('path_files/opf_paths.txt') as f:
         paths = f.readlines()
         for path in paths:
             path = path.strip()
