@@ -8,10 +8,33 @@ Paths to all Audio_Analysis DIRECTORIES
 
 ## cha_paths.txt
 
-Paths to al Audio_annotation DIRECTORIES
+Paths to all Audio_annotation DIRECTORIES
 
 ## cha_sparse_code_paths.txt
 
-PAths to all sparse_code.cha FILES
+Paths to all sparse_code.cha FILES
 
+## home_visit_paths.txt
+
+Paths to all home_visit DIRECTORIES
+
+## its_paths.txt
+
+Paths to all .its FILES
+
+## lenacha_paths.txt
+
+Paths to all .lena.cha FILES
+
+## opf_paths.txt
+
+Paths to all Video_Annotation DIRECTORIES
+
+## video_sparse_code_paths.txt
+
+Paths to all video_sparse_code.csv FILES
+
+## videobl_paths.txt
+
+Paths to all Video_Analysis DIRECTORIES
 
