@@ -2,11 +2,11 @@
 
 Contains files with paths of all instances of one kind of file
 
-## audiobl_paths.txt
+## audiobl_directories.txt
 
 Paths to all Audio_Analysis DIRECTORIES
 
-## cha_paths.txt
+## cha_directories.txt
 
 Paths to all Audio_annotation DIRECTORIES
 
@@ -14,7 +14,7 @@ Paths to all Audio_annotation DIRECTORIES
 
 Paths to all sparse_code.cha FILES
 
-## home_visit_paths.txt
+## home_visit_directories.txt
 
 Paths to all home_visit DIRECTORIES
 
@@ -26,7 +26,7 @@ Paths to all .its FILES
 
 Paths to all .lena.cha FILES
 
-## opf_paths.txt
+## opf_directories.txt
 
 Paths to all Video_Annotation DIRECTORIES
 
@@ -34,7 +34,7 @@ Paths to all Video_Annotation DIRECTORIES
 
 Paths to all video_sparse_code.csv FILES
 
-## videobl_paths.txt
+## videobl_directories.txt
 
 Paths to all Video_Analysis DIRECTORIES
 
