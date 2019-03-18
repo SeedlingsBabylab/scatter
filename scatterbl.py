@@ -32,8 +32,8 @@ def delete_old_files(root, files):
 if __name__ == "__main__":
 
     start_dir = sys.argv[1]
-    subj_files = sys.argv[2]
-    list_paths = sys.argv[3]
+    #subj_files = sys.argv[3]
+    list_paths = sys.argv[2]
 
     if len(sys.argv) > 5:
         print "\nusage:  $: python scatterbl.py  folder_with_all_bl_files  list_paths.txt  [--audio] [--video] [--rename]\n\ncan't have more than 3 arguments"
