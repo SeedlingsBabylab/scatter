@@ -27,6 +27,8 @@ def delete_old_files(root, files):
     print "\nremoving: "
     for x in issue_files:
         src = os.path.join(root, x)
+        if not os.path.exists(os.path.join(root, "old_files")):
+            os.makedirs(os.path.join(root, "old_files"))
         dst = os.path.join(root, "old_files", x.replace(
             ".docx", "_{}.docx".format(date.today().isoformat())))
         print "\t{}   --to-->      {}".format(src, dst)
@@ -39,7 +41,7 @@ if __name__ == "__main__":
     start_dir = sys.argv[1]
     subj_files = sys.argv[2]
 
-    if len(sys.argv) > 5:
+    if len(sys.argv) > 6:
         print "\nusage:  $: python coding_issues.py  folder_with_all_codingissues_files  path_to_subject_files  [--audio] [--video] [--rename]\n\ncan't have more than 4 arguments"
         sys.exit(0)
 

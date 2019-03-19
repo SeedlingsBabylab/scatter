@@ -37,8 +37,9 @@ def delete_old_files(root, files):
 if __name__ == "__main__":
 
     start_dir = sys.argv[1]
+    path_file = sys.argv[2]
 
-    if len(sys.argv) > 3:
+    if len(sys.argv) > 4:
         print "\nusage:  $: python cha.py  folder_with_all_cha_files [--rename]\n\ncan't have more than 2 arguments"
         print "cha_paths.txt should exist"
         sys.exit(0)
@@ -51,11 +52,12 @@ if __name__ == "__main__":
 
     for root, dirs, files in os.walk(start_dir):
         for file in files:
-            if file.endswith(".cha"):
+            if file.endswith(".cha") and not "scrubbed" in file:
+                print(root, file)
                 cha_file = CHAFile(os.path.join(root, file), file, file[:5])
                 cha_files.append(cha_file)
 
-    with open('path_files/cha_directories.txt') as f:
+    with open(path_file) as f:
         paths = f.readlines()
         for path in paths:
             path = path.strip()
