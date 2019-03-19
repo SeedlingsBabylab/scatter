@@ -56,13 +56,23 @@ if __name__ == "__main__":
         for file in files:
 
             if file.endswith(".csv") and "wordmerged" in file:
+                print(os.path.join(root, file))
                 key = file[:5]
-                if "audio" in file:
+                to_use = False
+                if "audio" in file or "audio" in dirs or "audio" in root \
+                or "Audio" in file or "Audio" in dirs or "Audio" in root:
+                # if audio_bl:
                     bl_type = "audio"
-                    print(file)
-                if "video" in file:
+                    print("audio",file)
+                    to_use = True
+                elif "video" in file or "video" in dirs or "video" in root \
+                or "Video" in file or "Video" in dirs or "Video" in root:
                     bl_type = "video"
-
+                    print("video", file)
+                    to_use = True
+                else:
+                    pass
+                # if to_use:
                 bl_file = BLFile(os.path.join(root, file), file, key, bl_type)
                 bl_files.append(bl_file)
 
