@@ -11,6 +11,10 @@ class CHAFile(object):
         self.filename = filename
         self.key = key
 
+    def __str__(self):
+        return(self.filename)
+
+
 
 skip_dirs = ["Old_Files", "Old_files", "Extra Files", "old_files",
              "old_chas", "old_cha", "Repair Files", "error", "errors"]

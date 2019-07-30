@@ -11,6 +11,8 @@ class IssuesFile(object):
         self.filename = filename
         self.key = key
         self.file_type = file_type
+    def __str__(self):
+        return(self.filename)
 
 
 skip_dirs = set(["Old_Files", "Old_files", "Extra Files",
