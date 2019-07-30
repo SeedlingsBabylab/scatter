@@ -13,7 +13,7 @@ class BLFile(object):
         self.bl_type = bl_type
     
     def __str__(self):
-        return(self.filename)
+        return self.filename
 
 
 skip_dirs = Set(["Old_Files", "Old_files",

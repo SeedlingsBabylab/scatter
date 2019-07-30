@@ -12,7 +12,7 @@ class CHAFile(object):
         self.key = key
 
     def __str__(self):
-        return(self.filename)
+        return self.filename
 
 
 

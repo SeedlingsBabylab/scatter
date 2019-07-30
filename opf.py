@@ -12,7 +12,7 @@ class OPFFile(object):
         self.key = key
 
     def __str__(self):
-        return(self.filename)
+        return self.filename
 
 skip_dirs = ["Old_Files", "Old_files", "Extra Files",
              "old_files", "old_opfs", "old_opf", "error", "errors"]
