@@ -3,7 +3,7 @@ import sys
 from sets import Set
 import shutil
 from datetime import date
-
+import pdb
 
 class BLFile(object):
     def __init__(self, path, filename, key, bl_type):
@@ -11,10 +11,6 @@ class BLFile(object):
         self.filename = filename
         self.key = key
         self.bl_type = bl_type
-    
-    def __str__(self):
-        return self.filename
-
 
 skip_dirs = Set(["Old_Files", "Old_files",
              "Extra Files", "old_files", "error", "errors"])
@@ -33,7 +29,7 @@ def delete_old_files(root, files):
 
 
 if __name__ == "__main__":
-
+    bl_type="video"
     start_dir = sys.argv[1]
     #subj_files = sys.argv[3]
     list_paths = sys.argv[2]
@@ -58,7 +54,7 @@ if __name__ == "__main__":
     for root, dirs, files in os.walk(start_dir):
         for file in files:
 
-            if file.endswith(".csv") and "wordmerged" in file:
+            if file.endswith(".csv") and ("wordmerged" in file or "sparse_code" in file):
                 print(os.path.join(root, file))
                 key = file[:5]
                 to_use = False
