@@ -39,8 +39,8 @@ if __name__ == "__main__":
 
     start_dir = sys.argv[1]
 
-    if len(sys.argv) > 3:
-        print "\nusage:  $: python opf.py  folder_with_all_opf_files  [--rename]\n\ncan't have more than 2 arguments"
+    if len(sys.argv) > 5:
+        print "\nusage:  $: python opf.py  folder_with_all_opf_files  [--video or --audio] [--rename]"
         print "opf_paths.txt should exist"
         sys.exit(0)
 
@@ -57,7 +57,7 @@ if __name__ == "__main__":
                 opf_files.append(opf_file)
                 print(os.path.join(root, file))
 
-    with open('path_files/opf_directories.txt') as f:
+    with open('../path_files/opf_directories.txt') as f:
         paths = f.readlines()
         for path in paths:
             path = path.strip()
