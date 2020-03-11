@@ -43,9 +43,9 @@ if __name__ == "__main__":
     start_dir = sys.argv[1]
     path_file = sys.argv[2]
 
-    if len(sys.argv) > 4:
-        print "\nusage:  $: python cha.py  folder_with_all_cha_files [--rename]\n\ncan't have more than 2 arguments"
-        print "cha_paths.txt should exist"
+    # check for correct command-line inputs
+    if len(sys.argv) > 5:
+        print "\nusage: python cha.py path/to/the/folder/to/be/sent/back path/to/cha_directories.txt [--audio] [--video] [--rename]"
         sys.exit(0)
 
     rename = False
