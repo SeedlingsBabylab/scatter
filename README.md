@@ -16,4 +16,4 @@ Be sure to pull the most recent version of the repo before using
 
 # Usage
 
-See https://app.gitbook.com/@bergelsonlab/s/project/seedlings-annotations/scatter
+See https://bergelsonlab.gitbook.io/blab/data-pipeline/scatter
